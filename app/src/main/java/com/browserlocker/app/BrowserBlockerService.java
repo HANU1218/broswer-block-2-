@@ -1,4 +1,4 @@
-package com.browserlocker.app;
+package com.browserlocker.app; 
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -72,7 +72,7 @@ public class BrowserBlockerService extends Service {
 } catch (Exception e) {
     Log.e(TAG, "Failed to suspend browsers", e);
 }
-
+    }
     /**
      * Blocks a single package if it turns out to be a browser.
      * Called from PackageInstallReceiver when a new app is installed.
@@ -95,7 +95,7 @@ public class BrowserBlockerService extends Service {
 } catch (Exception e) {
     Log.e(TAG, "Failed to block " + packageName, e);
 }
-
+        }
     // ─────────────────────────────────────────────────────────────────────────
     // Detection helpers
     // ─────────────────────────────────────────────────────────────────────────
