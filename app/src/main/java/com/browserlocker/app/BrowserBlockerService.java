@@ -65,17 +65,13 @@ public class BrowserBlockerService extends Service {
 
         String[] browserArray = browsers.toArray(new String[0]);
 
-        try {
-            String[] failed = dpm.setPackagesSuspended(admin, browserArray, true);
-            Log.d(TAG, "Blocked " + (browserArray.length - failed.length) +
-                    " browsers. Failed: " + failed.length);
-            for (String pkg : browserArray) {
-                Log.d(TAG, "  Suspended: " + pkg);
-            }
-        } catch (DevicePolicyManager.NameNotFoundException e) {
-            Log.e(TAG, "Package not found during suspension: " + e.getMessage());
-        }
-    }
+       try {
+    String[] failed = dpm.setPackagesSuspended(admin, browserArray, true);
+    Log.d(TAG, "Blocked " + (browserArray.length - failed.length) +
+            " browsers. Failed: " + failed.length);
+} catch (Exception e) {
+    Log.e(TAG, "Failed to suspend browsers", e);
+}
 
     /**
      * Blocks a single package if it turns out to be a browser.
@@ -93,14 +89,12 @@ public class BrowserBlockerService extends Service {
                 return;
             }
 
-            try {
-                dpm.setPackagesSuspended(admin, new String[]{packageName}, true);
-                Log.d(TAG, "Auto-blocked newly installed browser: " + packageName);
-            } catch (DevicePolicyManager.NameNotFoundException e) {
-                Log.e(TAG, "Failed to block " + packageName + ": " + e.getMessage());
-            }
-        }
-    }
+           try {
+    dpm.setPackagesSuspended(admin, new String[]{packageName}, true);
+    Log.d(TAG, "Auto-blocked newly installed browser: " + packageName);
+} catch (Exception e) {
+    Log.e(TAG, "Failed to block " + packageName, e);
+}
 
     // ─────────────────────────────────────────────────────────────────────────
     // Detection helpers
