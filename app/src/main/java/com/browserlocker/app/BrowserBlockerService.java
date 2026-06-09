@@ -96,6 +96,7 @@ public class BrowserBlockerService extends Service {
     Log.e(TAG, "Failed to block " + packageName, e);
 }
         }
+    }
     // ─────────────────────────────────────────────────────────────────────────
     // Detection helpers
     // ─────────────────────────────────────────────────────────────────────────
